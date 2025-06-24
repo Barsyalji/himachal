@@ -96,5 +96,7 @@ const submit = () => {
                 </PrimaryButton>
             </div>
         </form>
+          <a href="/auth/google" class="btn btn-danger">Login with Google</a>
+<a href="/auth/facebook" class="btn btn-primary">Login with Facebook</a>
     </GuestLayout>
 </template>

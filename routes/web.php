@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\SocialController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -24,4 +25,13 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+// Google
+Route::get('/auth/google', [SocialController::class, 'redirectToGoogle']);
+Route::get('/auth/google/callback', [SocialController::class, 'handleGoogleCallback']);
+
+// Facebook
+Route::get('/auth/facebook', [SocialController::class, 'redirectToFacebook']);
+Route::get('/auth/facebook/callback', [SocialController::class, 'handleFacebookCallback']);
+
+
+require __DIR__ . '/auth.php';

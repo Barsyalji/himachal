@@ -17,8 +17,13 @@ class User extends Authenticatable
      *
      * @var list<string>
      */
-    protected $garded = ['id'];
-
+protected $fillable = [
+        'first_name',
+        'last_name',
+        'username',
+        'email',
+        'password',
+    ];
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -41,4 +46,10 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function media()
+    {
+        return $this->morphMany(Media::class, 'resource');
+    }
+
 }
